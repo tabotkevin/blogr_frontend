@@ -62,6 +62,7 @@ class PostsPage extends React.Component {
 								<Icon name="plus" /> Create Post
 							</Button>
 						</section>
+						<div className="ui section divider" />
 						<PostsList
 							posts={this.props.posts}
 							handleDelete={this.handleDelete}

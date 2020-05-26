@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Form, Button, Message } from "semantic-ui-react";
+import { Form, Message } from "semantic-ui-react";
 import Validator from "validator";
 import InlineError from "../messages/InlineError";
 
@@ -43,38 +43,49 @@ class LoginForm extends React.Component {
 		const { data, errors, loading } = this.state;
 
 		return (
-			<Form onSubmit={this.onSubmit} loading={loading}>
+			<Form
+				onSubmit={this.onSubmit}
+				loading={loading}
+				className="ui large form"
+			>
 				{errors.global && (
 					<Message negative>
 						<Message.Header>Something went wrong</Message.Header>
 						<p>{errors.global}</p>
 					</Message>
 				)}
-				<Form.Field error={!!errors.email}>
-					<label htmlFor="email">Email</label>
-					<input
-						type="email"
-						id="email"
-						name="email"
-						placeholder="example@example.com"
-						value={data.email}
-						onChange={this.onChange}
-					/>
-					{errors.email && <InlineError text={errors.email} />}
-				</Form.Field>
-				<Form.Field error={!!errors.password}>
-					<label htmlFor="password">Password</label>
-					<input
-						type="password"
-						id="password"
-						name="password"
-						placeholder="Make it secure"
-						value={data.password}
-						onChange={this.onChange}
-					/>
-					{errors.password && <InlineError text={errors.password} />}
-				</Form.Field>
-				<Button primary>Login</Button>
+				<div className="ui stacked secondary  segment">
+					<Form.Field error={!!errors.email}>
+						<div className="ui left icon input">
+							<i className="mail icon" />
+							<input
+								type="email"
+								id="email"
+								name="email"
+								placeholder="example@example.com"
+								value={data.email}
+								onChange={this.onChange}
+							/>
+							{errors.email && <InlineError text={errors.email} />}
+						</div>
+					</Form.Field>
+					<Form.Field error={!!errors.password}>
+						<div className="ui left icon input">
+							<i className="lock icon" />
+							<input
+								type="password"
+								id="password"
+								name="password"
+								placeholder="Make it secure"
+								value={data.password}
+								onChange={this.onChange}
+							/>
+							{errors.password && <InlineError text={errors.password} />}
+						</div>
+					</Form.Field>
+
+					<button className="ui fluid large teal submit button">Login</button>
+				</div>
 			</Form>
 		);
 	}

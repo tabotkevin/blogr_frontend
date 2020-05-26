@@ -7,19 +7,24 @@ import gravatarUrl from "gravatar-url";
 import * as actions from "../../actions/auth";
 
 const TopNavigation = ({ user, logout }) => (
-	<Menu secondary pointing>
-		<Menu.Item as={Link} to="/dashboard">
-			Dashboard
+	<Menu tabular>
+		<Menu.Item as={Link} to="/dashboard" active={"dashboards" === "dashboard"}>
+			<i className="home icon" /> Dashboard
 		</Menu.Item>
 
 		<Menu.Item as={Link} to="/posts">
-			Posts
+			<i className="mail icon" /> Posts
 		</Menu.Item>
 
 		<Menu.Menu position="right">
 			<Dropdown trigger={<Image avatar src={gravatarUrl(user.email)} />}>
 				<Dropdown.Menu>
-					<Dropdown.Item onClick={() => logout()}>Logout</Dropdown.Item>
+					<Dropdown.Item onClick={() => logout()}>
+						<i className="sign-out icon" /> Logout
+					</Dropdown.Item>
+					<Menu.Item as={Link} to="#">
+						<i className="user icon" /> Account
+					</Menu.Item>
 				</Dropdown.Menu>
 			</Dropdown>
 		</Menu.Menu>

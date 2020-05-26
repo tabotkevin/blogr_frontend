@@ -10,12 +10,29 @@ class LoginPage extends React.Component {
 		this.props.login(data).then(() => this.props.history.push("/dashboard"));
 
 	render() {
+		const Styles = {
+			grid: { height: "100%" },
+			image: { marginTop: "250px" },
+			column: { maxWidth: "450px" },
+		};
+
 		return (
-			<div>
-				<h1>Login page</h1>
-				<LoginForm submit={this.submit} />
-				<Link to="/forgot_password">Forgot Password?</Link> or{" "}
-				<Link to="/signup">Sign Up</Link>
+			<div
+				className="ui middle aligned center aligned grid"
+				style={Styles.grid}
+			>
+				<div className="column" style={Styles.column}>
+					<h2 className="ui image header" style={Styles.image}>
+						<div className="content">Log-in to your account</div>
+					</h2>
+					<LoginForm submit={this.submit} />
+					<div className="ui message">
+						New to us? <Link to="/signup">Register</Link>
+					</div>
+
+					<div className="ui horizontal divider">Or</div>
+					<Link to="/forgot_password">Forgot Password?</Link>
+				</div>
 			</div>
 		);
 	}

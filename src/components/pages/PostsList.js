@@ -1,19 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import PostCard from "../cards/PostCard";
+import Empty from "../placeholders/empty";
 
 const PostsList = ({ posts, handleDelete }) => {
-	const noPosts = <p>You have no posts yet</p>;
-
 	const postsList = (
-		<div className="ui four cards">
+		<div className="ui three cards">
 			{posts.map((post) => (
 				<PostCard post={post} key={post._id} handleDelete={handleDelete} />
 			))}
 		</div>
 	);
 
-	return <div>{posts.length === 0 ? noPosts : postsList}</div>;
+	return <div>{posts.length === 0 ? <Empty /> : postsList}</div>;
 };
 
 PostsList.propTypes = {
