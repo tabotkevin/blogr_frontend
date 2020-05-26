@@ -8,22 +8,22 @@ import * as actions from "../../actions/auth";
 
 const TopNavigation = ({ user, logout }) => (
 	<Menu tabular>
-		<Menu.Item as={Link} to="/dashboard" active={"dashboards" === "dashboard"}>
+		<Menu.Item as={Link} to="/dashboard" active="true">
 			<i className="home icon" /> Dashboard
 		</Menu.Item>
 
 		<Menu.Item as={Link} to="/posts">
-			<i className="mail icon" /> Posts
+			<i className="tag icon" /> Posts
 		</Menu.Item>
 
 		<Menu.Menu position="right">
 			<Dropdown trigger={<Image avatar src={gravatarUrl(user.email)} />}>
 				<Dropdown.Menu>
 					<Dropdown.Item onClick={() => logout()}>
-						<i className="sign-out icon" /> Logout
+						<i className="user icon" /> Logout
 					</Dropdown.Item>
 					<Menu.Item as={Link} to="#">
-						<i className="user icon" /> Account
+						<i className="mail icon" /> Account
 					</Menu.Item>
 				</Dropdown.Menu>
 			</Dropdown>

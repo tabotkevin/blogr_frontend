@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { Message, Icon, Button } from "semantic-ui-react";
+import { Message, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 import PostsList from "./PostsList";
 import { fetchAll, deletes } from "../../actions/posts";
@@ -48,26 +47,10 @@ class PostsPage extends React.Component {
 				)}
 
 				{!loading && success && (
-					<div>
-						<section>
-							<Button
-								floated="right"
-								icon
-								labelPosition="left"
-								primary
-								size="small"
-								as={Link}
-								to="/post"
-							>
-								<Icon name="plus" /> Create Post
-							</Button>
-						</section>
-						<div className="ui section divider" />
-						<PostsList
-							posts={this.props.posts}
-							handleDelete={this.handleDelete}
-						/>
-					</div>
+					<PostsList
+						posts={this.props.posts}
+						handleDelete={this.handleDelete}
+					/>
 				)}
 
 				{!loading && !success && (

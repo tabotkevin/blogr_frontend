@@ -13,6 +13,7 @@ const PostCard = ({ post, handleDelete }) => {
 			</div>
 			<div className="content">
 				<div className="header">{post.title}</div>
+				<div className="meta">April 4, 2020</div>
 				<div className="description">{post.body}</div>
 			</div>
 			<div className="extra content">
