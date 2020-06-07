@@ -5,6 +5,7 @@ import { Route } from "react-router-dom";
 import Loader from "react-loader";
 import HomePage from "./components/pages/HomePage";
 import LoginPage from "./components/pages/LoginPage";
+import BlogPage from "./components/pages/BlogPage";
 import DashboardPage from "./components/pages/DashboardPage";
 import SignupPage from "./components/pages/SignupPage";
 import PostPage from "./components/pages/PostPage";
@@ -14,7 +15,8 @@ import ForgotPasswordPage from "./components/pages/ForgotPasswordPage";
 import ResetPasswordPage from "./components/pages/ResetPasswordPage";
 import UserRoute from "./components/routes/UserRoute";
 import GuestRoute from "./components/routes/GuestRoute";
-import TopNavigation from "./components/navigation/TopNavigation";
+import NavContainer from "./components/containers/NavContainer";
+import HomePageFooter from "./components/footers/HomePageFooter";
 import { fetchCurrentUser } from "./actions/users";
 
 class App extends React.Component {
@@ -25,11 +27,12 @@ class App extends React.Component {
 	}
 
 	render() {
-		const { location, isAuthenticated, loaded } = this.props;
+		const { location, loaded, isAuthenticated } = this.props;
+		const isHome = location.pathname === "/";
 		return (
-			<div className="ui container">
+			<div>
 				<Loader loaded={loaded}>
-					{isAuthenticated && <TopNavigation />}
+					{(isAuthenticated || isHome) && <NavContainer />}
 					<Route location={location} path="/" exact component={HomePage} />
 					<Route
 						location={location}
@@ -75,6 +78,12 @@ class App extends React.Component {
 					/>
 					<UserRoute
 						location={location}
+						path="/blog"
+						exact
+						component={BlogPage}
+					/>
+					<UserRoute
+						location={location}
 						path="/post"
 						exact
 						component={PostPage}
@@ -85,6 +94,7 @@ class App extends React.Component {
 						exact
 						component={PostPage}
 					/>
+					{(isAuthenticated || isHome) && <HomePageFooter />}
 				</Loader>
 			</div>
 		);

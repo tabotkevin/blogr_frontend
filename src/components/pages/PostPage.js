@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Container } from "semantic-ui-react";
 import { connect } from "react-redux";
 import PostForm from "../forms/PostForm";
 import { create, update, read } from "../../actions/posts";
@@ -25,10 +26,10 @@ class PostPage extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<Container>
 				<h1>Make A Post</h1>
 				<PostForm submit={this.submit} post={this.props.post} />
-			</div>
+			</Container>
 		);
 	}
 }

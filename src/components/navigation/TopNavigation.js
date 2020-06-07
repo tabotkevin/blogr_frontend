@@ -1,46 +1,95 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Menu, Dropdown, Image } from "semantic-ui-react";
+import { Menu, Dropdown, Image, Button, Container } from "semantic-ui-react";
+
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import gravatarUrl from "gravatar-url";
 import * as actions from "../../actions/auth";
 
-const TopNavigation = ({ user, logout }) => (
-	<Menu tabular>
-		<Menu.Item as={Link} to="/dashboard" active="true">
-			<i className="home icon" /> Dashboard
-		</Menu.Item>
+class TopNavigation extends React.Component {
+	state = {};
 
-		<Menu.Item as={Link} to="/posts">
-			<i className="tag icon" /> Posts
-		</Menu.Item>
+	hideFixedMenu = () => this.setState({ fixed: false });
+	showFixedMenu = () => this.setState({ fixed: true });
 
-		<Menu.Menu position="right">
-			<Dropdown trigger={<Image avatar src={gravatarUrl(user.email)} />}>
-				<Dropdown.Menu>
-					<Dropdown.Item onClick={() => logout()}>
-						<i className="user icon" /> Logout
-					</Dropdown.Item>
-					<Menu.Item as={Link} to="#">
-						<i className="mail icon" /> Account
+	render() {
+		const { logout, user, isAuthenticated } = this.props;
+		const { fixed } = this.state;
+		// const path = location.pathname;
+		//  active={path === "/"}
+
+		return (
+			<Menu
+				fixed={fixed ? "top" : null}
+				inverted={!fixed}
+				pointing={!fixed}
+				secondary={!fixed}
+				size="large"
+			>
+				<Container>
+					<Menu.Item as={Link} to="/" active>
+						Home
 					</Menu.Item>
-				</Dropdown.Menu>
-			</Dropdown>
-		</Menu.Menu>
-	</Menu>
-);
+					<Menu.Item as={Link} to="/blog">
+						Blog
+					</Menu.Item>
+					<Menu.Item as={Link} to="/dashboard">
+						Dashboard
+					</Menu.Item>
+					<Menu.Item as={Link} to="/posts">
+						Posts
+					</Menu.Item>
+					{isAuthenticated ? (
+						<Menu.Menu position="right">
+							<Dropdown
+								trigger={<Image avatar src={gravatarUrl(user.email)} />}
+							>
+								<Dropdown.Menu>
+									<Dropdown.Item onClick={() => logout()}>
+										<i className="user icon" /> Logout
+									</Dropdown.Item>
+									<Menu.Item as={Link} to="#">
+										<i className="mail icon" /> Account
+									</Menu.Item>
+								</Dropdown.Menu>
+							</Dropdown>
+						</Menu.Menu>
+					) : (
+						<Menu.Item position="right">
+							<Button as={Link} to="/login" inverted={!fixed}>
+								Log in
+							</Button>
+
+							<Button
+								as={Link}
+								to="/signup"
+								inverted={!fixed}
+								primary={fixed}
+								style={{ marginLeft: "0.5em" }}
+							>
+								Sign Up
+							</Button>
+						</Menu.Item>
+					)}
+				</Container>
+			</Menu>
+		);
+	}
+}
 
 TopNavigation.propTypes = {
 	user: PropTypes.shape({
 		email: PropTypes.string.isRequired,
 	}).isRequired,
 	logout: PropTypes.func.isRequired,
+	isAuthenticated: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {
 	return {
 		user: state.user,
+		isAuthenticated: !!state.user.email,
 	};
 }
 

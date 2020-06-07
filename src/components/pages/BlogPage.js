@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Message, Icon, Container } from "semantic-ui-react";
 import { connect } from "react-redux";
-import PostsList from "./PostsList";
 import { fetchAll, deletes } from "../../actions/posts";
+import BlogPosts from "./BlogPosts";
 
-class PostsPage extends React.Component {
+class BlogPage extends React.Component {
 	state = {
 		loading: true,
 		success: false,
@@ -45,12 +45,7 @@ class PostsPage extends React.Component {
 					</Message>
 				)}
 
-				{!loading && success && (
-					<PostsList
-						posts={this.props.posts}
-						handleDelete={this.handleDelete}
-					/>
-				)}
+				{!loading && success && <BlogPosts posts={this.props.posts} />}
 
 				{!loading && !success && (
 					<Message negative icon>
@@ -65,7 +60,7 @@ class PostsPage extends React.Component {
 	}
 }
 
-PostsPage.propTypes = {
+BlogPage.propTypes = {
 	fetchAll: PropTypes.func.isRequired,
 	deletes: PropTypes.func.isRequired,
 	posts: PropTypes.array.isRequired,
@@ -77,4 +72,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, { fetchAll, deletes })(PostsPage);
+export default connect(mapStateToProps, { fetchAll, deletes })(BlogPage);

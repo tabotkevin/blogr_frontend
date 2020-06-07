@@ -97,7 +97,9 @@ class PostForm extends React.Component {
 					{errors.body && <InlineError text={errors.body} />}
 				</Form.Field>
 
-				<Button primary>Post</Button>
+				<Button size="huge" primary>
+					Post
+				</Button>
 			</Form>
 		);
 	}
