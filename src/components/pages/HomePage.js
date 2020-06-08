@@ -11,19 +11,14 @@ const HomePage = () => (
 				<Grid.Row>
 					<Grid.Column width={8}>
 						<Header as="h3" style={{ fontSize: "2em" }}>
-							We Help Companies and Companions
+							We do things differently.
 						</Header>
 						<p style={{ fontSize: "1.33em" }}>
-							We can give your company superpowers to do things that they never
-							thought possible. Let us delight your customers and empower your
-							needs... through pure data analytics.
-						</p>
-						<Header as="h3" style={{ fontSize: "2em" }}>
-							We Make Bananas That Can Dance
-						</Header>
-						<p style={{ fontSize: "1.33em" }}>
-							Yes that's right, you thought it was the stuff of dreams, but even
-							bananas can be bioengineered.
+							Our sole purpose is to help you find compelling ideas, knowledge,
+							and perspectives. We don’t serve ads—we serve you, the curious
+							reader who loves to learn new things. Medium is home to thousands
+							of independent voices, and we combine humans and technology to
+							find the best reading for you—and filter out the rest.
 						</p>
 					</Grid.Column>
 					<Grid.Column floated="right" width={6}>
@@ -31,13 +26,13 @@ const HomePage = () => (
 							bordered
 							rounded
 							size="large"
-							src="/static/images/white-image.png"
+							src="/static/images/posts.png"
 						/>
 					</Grid.Column>
 				</Grid.Row>
 				<Grid.Row>
 					<Grid.Column textAlign="center">
-						<Button size="huge">Check Them Out</Button>
+						<Button size="huge">Get Started</Button>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>

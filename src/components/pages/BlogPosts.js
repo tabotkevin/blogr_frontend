@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button, Header } from "semantic-ui-react";
+import { Button, Message } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import Empty from "../placeholders/empty";
+import Moment from "react-moment";
 
 const BlogPosts = ({ posts }) => {
 	const postsList = (
@@ -12,24 +12,37 @@ const BlogPosts = ({ posts }) => {
 				The Blog
 			</h1>
 
-			{posts.map((post) => (
-				<div>
-					<div className="image">
-						<img
-							src={`http://localhost:8080/uploads/${post.image}`}
-							alt="Post cover"
-						/>
+			<div className="ui two cards">
+				{posts.map((post) => (
+					<div className="ui card">
+						<div className="image">
+							<img
+								src={`http://localhost:8080/uploads/${post.image}`}
+								alt="Post cover"
+							/>
+						</div>
+						<div className="content">
+							<div className="header">{post.title}</div>
+							<div className="meta">
+								<Moment date={post.createdAt} />
+							</div>
+							<div className="description">{post.body}</div>
+						</div>
+						<div className="extra content">
+							<Button as={Link} to={`post/${post._id}`} size="large">
+								Read More
+							</Button>
+						</div>
 					</div>
-					<Header as="h3" style={{ fontSize: "2em" }}>
-						{post.title}
-					</Header>
-					<p style={{ fontSize: "1.33em" }}>{post.body}</p>
-					<Button as={Link} to={`post/${post._id}`} size="large">
-						Read More
-					</Button>
-				</div>
-			))}
+				))}
+			</div>
 		</div>
+	);
+
+	const Empty = () => (
+		<Message info>
+			<Message.Header>There are no blog posts at the moment..</Message.Header>
+		</Message>
 	);
 
 	return <div>{posts.length === 0 ? <Empty /> : postsList}</div>;

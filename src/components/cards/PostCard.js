@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import Moment from "react-moment";
 
 const PostCard = ({ post, handleDelete }) => {
 	return (
@@ -13,7 +14,9 @@ const PostCard = ({ post, handleDelete }) => {
 			</div>
 			<div className="content">
 				<div className="header">{post.title}</div>
-				<div className="meta">April 4, 2020</div>
+				<div className="meta">
+					<Moment date={post.createdAt} />
+				</div>
 				<div className="description">{post.body}</div>
 			</div>
 			<div className="extra content">

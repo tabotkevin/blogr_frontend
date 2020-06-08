@@ -1,38 +1,26 @@
 import React from "react";
 
-import { Container, Grid, Header, List, Segment } from "semantic-ui-react";
+import { Container, Grid, Header, Segment } from "semantic-ui-react";
 
 const HomePageFooter = () => (
-	<Segment inverted vertical style={{ padding: "5em 0em" }}>
+	<Segment
+		inverted
+		vertical
+		style={{
+			padding: "2em 0em",
+			position: "absolute",
+			bottom: "0",
+			width: "100%",
+		}}
+	>
 		<Container>
-			<Grid divided inverted stackable>
+			<Grid divided inverted stackable centered>
 				<Grid.Row>
-					<Grid.Column width={3}>
-						<Header inverted as="h4" content="About" />
-						<List link inverted>
-							<List.Item as="a">Sitemap</List.Item>
-							<List.Item as="a">Contact Us</List.Item>
-							<List.Item as="a">Religious Ceremonies</List.Item>
-							<List.Item as="a">Gazebo Plans</List.Item>
-						</List>
-					</Grid.Column>
-					<Grid.Column width={3}>
-						<Header inverted as="h4" content="Services" />
-						<List link inverted>
-							<List.Item as="a">Banana Pre-Order</List.Item>
-							<List.Item as="a">DNA FAQ</List.Item>
-							<List.Item as="a">How To Access</List.Item>
-							<List.Item as="a">Favorite X-Men</List.Item>
-						</List>
-					</Grid.Column>
 					<Grid.Column width={7}>
-						<Header as="h4" inverted>
-							Footer Header
+						<Header as="h4" inverted center>
+							Blogr
 						</Header>
-						<p>
-							Extra space for a call to action inside the footer that could help
-							re-engage users.
-						</p>
+						<p center>Copyright @ 2020 Blogr, All rights reserved.</p>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>

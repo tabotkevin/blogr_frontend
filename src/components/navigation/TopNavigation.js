@@ -49,9 +49,6 @@ class TopNavigation extends React.Component {
 									<Dropdown.Item onClick={() => logout()}>
 										<i className="user icon" /> Logout
 									</Dropdown.Item>
-									<Menu.Item as={Link} to="#">
-										<i className="mail icon" /> Account
-									</Menu.Item>
 								</Dropdown.Menu>
 							</Dropdown>
 						</Menu.Menu>
