@@ -2,7 +2,7 @@ import React from "react";
 
 import { Container, Grid, Header, Segment } from "semantic-ui-react";
 
-const HomePageFooter = () => (
+const PageFooter = () => (
 	<Segment
 		inverted
 		vertical
@@ -28,4 +28,4 @@ const HomePageFooter = () => (
 	</Segment>
 );
 
-export default HomePageFooter;
+export default PageFooter;

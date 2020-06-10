@@ -2,6 +2,7 @@ import {
 	POST_CREATED,
 	POST_UPDATED,
 	POSTS_FETCHED,
+	BLOG_POSTS_FETCHED,
 	POST_DELETED,
 	POST_FETCHED,
 } from "../types";
@@ -16,6 +17,8 @@ export default function posts(state = {}, action = {}) {
 				return item;
 			});
 		case POSTS_FETCHED:
+			return [...state, ...action.posts];
+		case BLOG_POSTS_FETCHED:
 			return [...state, ...action.posts];
 		case POST_FETCHED: {
 			const index = state.findIndex((item) => item._id === action.post._id);

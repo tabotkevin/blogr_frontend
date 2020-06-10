@@ -1,6 +1,7 @@
 import api from "../api";
 import {
 	POSTS_FETCHED,
+	BLOG_POSTS_FETCHED,
 	POST_FETCHED,
 	POST_CREATED,
 	POST_UPDATED,
@@ -9,6 +10,11 @@ import {
 
 export const postsFetched = (posts) => ({
 	type: POSTS_FETCHED,
+	posts,
+});
+
+export const blogPostsFetched = (posts) => ({
+	type: BLOG_POSTS_FETCHED,
 	posts,
 });
 
@@ -35,7 +41,11 @@ export const postDeleted = (_id) => ({
 export const fetchAll = () => (dispatch) =>
 	api.posts.fetchAll().then((posts) => {
 		dispatch(postsFetched(posts));
-		// return posts;
+	});
+
+export const blog = () => (dispatch) =>
+	api.posts.blog().then((posts) => {
+		dispatch(blogPostsFetched(posts));
 	});
 
 export const create = (data) => (dispatch) =>

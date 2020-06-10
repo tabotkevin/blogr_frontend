@@ -30,8 +30,7 @@ class NavContainer extends Component {
 						<TopNavigation />
 					</Segment>
 				</Visibility>
-
-				{children}
+				<div style={{ marginTop: "40px" }}>{children}</div>
 			</Responsive>
 		);
 	}

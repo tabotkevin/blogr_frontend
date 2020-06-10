@@ -2,8 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Message, Icon, Container } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { fetchAll, deletes } from "../../actions/posts";
+import { blog } from "../../actions/posts";
 import BlogPosts from "./BlogPosts";
+import NavContainer from "../containers/NavContainer";
+import PageFooter from "../footers/PageFooter";
 
 class BlogPage extends React.Component {
 	state = {
@@ -14,7 +16,7 @@ class BlogPage extends React.Component {
 
 	componentDidMount() {
 		this.props
-			.fetchAll()
+			.blog()
 			.then(() =>
 				this.setState({
 					loading: false,
@@ -30,39 +32,38 @@ class BlogPage extends React.Component {
 			);
 	}
 
-	handleDelete = (_id) => {
-		this.props.deletes(_id);
-	};
-
 	render() {
 		const { loading, success } = this.state;
 		return (
-			<Container>
-				{loading && (
-					<Message icon>
-						<Icon name="circle notched" loading />
-						<Message.Header>Fetching Posts...</Message.Header>
-					</Message>
-				)}
+			<div>
+				<NavContainer />
+				<Container>
+					{loading && (
+						<Message icon>
+							<Icon name="circle notched" loading />
+							<Message.Header>Fetching Posts...</Message.Header>
+						</Message>
+					)}
 
-				{!loading && success && <BlogPosts posts={this.props.posts} />}
+					{!loading && success && <BlogPosts posts={this.props.posts} />}
 
-				{!loading && !success && (
-					<Message negative icon>
-						<Icon name="warning sign" />
-						<Message.Content>
-							<Message.Header>Ooops. Something went wrong</Message.Header>
-						</Message.Content>
-					</Message>
-				)}
-			</Container>
+					{!loading && !success && (
+						<Message negative icon>
+							<Icon name="warning sign" />
+							<Message.Content>
+								<Message.Header>Ooops. Something went wrong</Message.Header>
+							</Message.Content>
+						</Message>
+					)}
+				</Container>
+				<PageFooter />
+			</div>
 		);
 	}
 }
 
 BlogPage.propTypes = {
-	fetchAll: PropTypes.func.isRequired,
-	deletes: PropTypes.func.isRequired,
+	blog: PropTypes.func.isRequired,
 	posts: PropTypes.array.isRequired,
 };
 
@@ -72,4 +73,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, { fetchAll, deletes })(BlogPage);
+export default connect(mapStateToProps, { blog })(BlogPage);

@@ -2,10 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Container } from "semantic-ui-react";
 import { connect } from "react-redux";
+import NavContainer from "../containers/NavContainer";
+import PageFooter from "../footers/PageFooter";
 import ConfirmEmailMessage from "../messages/ConfirmEmailMessage";
 
 const DashboardPage = ({ isConfirmed }) => (
-	<Container>{!isConfirmed && <ConfirmEmailMessage />}</Container>
+	<div>
+		<NavContainer />
+		<Container>{!isConfirmed && <ConfirmEmailMessage />}</Container>
+		<PageFooter />
+	</div>
 );
 DashboardPage.propTypes = {
 	isConfirmed: PropTypes.bool.isRequired,

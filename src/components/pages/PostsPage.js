@@ -4,6 +4,8 @@ import { Message, Icon, Container } from "semantic-ui-react";
 import { connect } from "react-redux";
 import PostsList from "./PostsList";
 import { fetchAll, deletes } from "../../actions/posts";
+import NavContainer from "../containers/NavContainer";
+import PageFooter from "../footers/PageFooter";
 
 class PostsPage extends React.Component {
 	state = {
@@ -37,30 +39,34 @@ class PostsPage extends React.Component {
 	render() {
 		const { loading, success } = this.state;
 		return (
-			<Container>
-				{loading && (
-					<Message icon>
-						<Icon name="circle notched" loading />
-						<Message.Header>Fetching Posts...</Message.Header>
-					</Message>
-				)}
+			<div>
+				<NavContainer />
+				<Container>
+					{loading && (
+						<Message icon>
+							<Icon name="circle notched" loading />
+							<Message.Header>Fetching Posts...</Message.Header>
+						</Message>
+					)}
 
-				{!loading && success && (
-					<PostsList
-						posts={this.props.posts}
-						handleDelete={this.handleDelete}
-					/>
-				)}
+					{!loading && success && (
+						<PostsList
+							posts={this.props.posts}
+							handleDelete={this.handleDelete}
+						/>
+					)}
 
-				{!loading && !success && (
-					<Message negative icon>
-						<Icon name="warning sign" />
-						<Message.Content>
-							<Message.Header>Ooops. Something went wrong</Message.Header>
-						</Message.Content>
-					</Message>
-				)}
-			</Container>
+					{!loading && !success && (
+						<Message negative icon>
+							<Icon name="warning sign" />
+							<Message.Content>
+								<Message.Header>Ooops. Something went wrong</Message.Header>
+							</Message.Content>
+						</Message>
+					)}
+				</Container>
+				<PageFooter />
+			</div>
 		);
 	}
 }

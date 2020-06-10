@@ -15,8 +15,7 @@ import ForgotPasswordPage from "./components/pages/ForgotPasswordPage";
 import ResetPasswordPage from "./components/pages/ResetPasswordPage";
 import UserRoute from "./components/routes/UserRoute";
 import GuestRoute from "./components/routes/GuestRoute";
-import NavContainer from "./components/containers/NavContainer";
-import HomePageFooter from "./components/footers/HomePageFooter";
+
 import { fetchCurrentUser } from "./actions/users";
 
 class App extends React.Component {
@@ -27,76 +26,71 @@ class App extends React.Component {
 	}
 
 	render() {
-		const { location, loaded, isAuthenticated } = this.props;
-		const isHome = location.pathname === "/";
+		const { location, loaded } = this.props;
 		return (
 			<div style={{ position: "relative", minHeight: "100vh" }}>
 				<Loader loaded={loaded}>
-					{(isAuthenticated || isHome) && <NavContainer />}
-					<div style={{ marginTop: "40px" }}>
-						<Route location={location} path="/" exact component={HomePage} />
-						<Route
-							location={location}
-							path="/confirmation/:token"
-							exact
-							component={ConfirmationPage}
-						/>
-						<GuestRoute
-							location={location}
-							path="/login"
-							exact
-							component={LoginPage}
-						/>
-						<GuestRoute
-							location={location}
-							path="/signup"
-							exact
-							component={SignupPage}
-						/>
-						<GuestRoute
-							location={location}
-							path="/forgot_password"
-							exact
-							component={ForgotPasswordPage}
-						/>
-						<GuestRoute
-							location={location}
-							path="/reset_password/:token"
-							exact
-							component={ResetPasswordPage}
-						/>
-						<UserRoute
-							location={location}
-							path="/dashboard"
-							exact
-							component={DashboardPage}
-						/>
-						<UserRoute
-							location={location}
-							path="/posts"
-							exact
-							component={PostsPage}
-						/>
-						<UserRoute
-							location={location}
-							path="/blog"
-							exact
-							component={BlogPage}
-						/>
-						<UserRoute
-							location={location}
-							path="/post"
-							exact
-							component={PostPage}
-						/>
-						<UserRoute
-							location={location}
-							path="/post/:_id"
-							exact
-							component={PostPage}
-						/>
-					</div>
-					{(isAuthenticated || isHome) && <HomePageFooter />}
+					<Route location={location} path="/" exact component={HomePage} />
+					<Route
+						location={location}
+						path="/confirmation/:token"
+						exact
+						component={ConfirmationPage}
+					/>
+					<GuestRoute
+						location={location}
+						path="/login"
+						exact
+						component={LoginPage}
+					/>
+					<GuestRoute
+						location={location}
+						path="/signup"
+						exact
+						component={SignupPage}
+					/>
+					<GuestRoute
+						location={location}
+						path="/forgot_password"
+						exact
+						component={ForgotPasswordPage}
+					/>
+					<GuestRoute
+						location={location}
+						path="/reset_password/:token"
+						exact
+						component={ResetPasswordPage}
+					/>
+					<UserRoute
+						location={location}
+						path="/dashboard"
+						exact
+						component={DashboardPage}
+					/>
+					<UserRoute
+						location={location}
+						path="/posts"
+						exact
+						component={PostsPage}
+					/>
+					<UserRoute
+						location={location}
+						path="/blog"
+						exact
+						component={BlogPage}
+					/>
+					<UserRoute
+						location={location}
+						path="/post"
+						exact
+						component={PostPage}
+					/>
+					<UserRoute
+						location={location}
+						path="/post/:_id"
+						exact
+						component={PostPage}
+					/>
 				</Loader>
 			</div>
 		);

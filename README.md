@@ -16,3 +16,7 @@ $ yarn start
 ![screenshots](screenshots/3.png)
 ![screenshots](screenshots/4.png)
 ![screenshots](screenshots/5.png)
+![screenshots](screenshots/6.png)
+![screenshots](screenshots/7.png)
+![screenshots](screenshots/8.png)
+![screenshots](screenshots/9.png)

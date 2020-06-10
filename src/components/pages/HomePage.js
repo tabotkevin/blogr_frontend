@@ -1,11 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Button, Grid, Header, Image, Segment } from "semantic-ui-react";
-
-import HeaderContainer from "../containers/HeaderContainer";
+import PageFooter from "../footers/PageFooter";
+import DesktopContainer from "../containers/DesktopContainer";
 
 const HomePage = () => (
-	<HeaderContainer>
+	<DesktopContainer>
 		<Segment style={{ padding: "8em 0em" }} vertical>
 			<Grid container stackable verticalAlign="middle">
 				<Grid.Row>
@@ -37,12 +36,8 @@ const HomePage = () => (
 				</Grid.Row>
 			</Grid>
 		</Segment>
-	</HeaderContainer>
+		<PageFooter />
+	</DesktopContainer>
 );
-
-HomePage.propTypes = {
-	fetchAll: PropTypes.func.isRequired,
-	posts: PropTypes.array.isRequired,
-};
 
 export default HomePage;

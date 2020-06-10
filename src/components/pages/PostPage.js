@@ -4,6 +4,8 @@ import { Container } from "semantic-ui-react";
 import { connect } from "react-redux";
 import PostForm from "../forms/PostForm";
 import { create, update, read } from "../../actions/posts";
+import NavContainer from "../containers/NavContainer";
+import PageFooter from "../footers/PageFooter";
 
 class PostPage extends React.Component {
 	componentDidMount = () => {
@@ -13,23 +15,23 @@ class PostPage extends React.Component {
 	};
 
 	submit = (data) => {
-		console.log("The _id is ", data.get("_id"));
-		console.log("is null ", data.get("_id") === "");
 		if (data.get("_id")) {
-			console.log("_id updating");
 			this.props.update(data).then(() => this.props.history.push("/posts"));
 		} else {
-			console.log("No _id creating");
 			this.props.create(data).then(() => this.props.history.push("/posts"));
 		}
 	};
 
 	render() {
 		return (
-			<Container>
-				<h1>Make A Post</h1>
-				<PostForm submit={this.submit} post={this.props.post} />
-			</Container>
+			<div>
+				<NavContainer />
+				<Container>
+					<h1>Make A Post</h1>
+					<PostForm submit={this.submit} post={this.props.post} />
+				</Container>
+				<PageFooter />
+			</div>
 		);
 	}
 }

@@ -30,7 +30,13 @@ class DesktopContainer extends Component {
 					<Segment
 						inverted
 						textAlign="center"
-						style={{ minHeight: 700, padding: "1em 0em" }}
+						style={{
+							minHeight: 700,
+							padding: "1em 0em",
+							backgroundImage: "url('/static/images/background.jpg')",
+							backgroundSize: "cover",
+							backgroundPosition: "center",
+						}}
 						vertical
 					>
 						<TopNavigation />
