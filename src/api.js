@@ -29,6 +29,6 @@ export default {
 				.put(`/api/posts/${data.get("_id")}`, data)
 				.then((res) => res.data.post),
 		delete: (id) => axios.delete(`/api/posts/${id}`),
-		blog: () => axios.get("/api/posts/blog").then((res) => res.data.posts),
+		blog: () => axios.get("/api/blog/").then((res) => res.data.posts),
 	},
 };
